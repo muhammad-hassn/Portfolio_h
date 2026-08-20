@@ -14,7 +14,7 @@ import { Contact } from '@/components/sections/contact';
 import { getProfile, getServices, getProblems, getSkills, getProjects } from '@/lib/data';
 import { DEFAULT_PROFILE } from '@/lib/types';
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export default async function Home() {
   const [profile, services, problems, skills, projects] = await Promise.all([

@@ -8,17 +8,7 @@ export function Problems({ problems }: { problems: Problem[] }) {
   return (
     <section id="problems" className="relative scroll-mt-20 border-t border-border/40 bg-background-soft/30 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <FadeUp className="max-w-2xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Problems I Solve
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
-            What Can I Help You Automate or Build?
-          </h2>
-          <p className="mt-4 text-base text-muted-foreground text-pretty">
-            If any of these sound familiar, there's a good chance I can help.
-          </p>
-        </FadeUp>
+
 
         <Stagger staggerChildren={0.08} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {problems.map((problem, i) => (
