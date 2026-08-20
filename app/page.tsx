@@ -1,6 +1,5 @@
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
-import { AnnouncementBar } from '@/components/layout/announcement-bar';
 import { ScrollProgress } from '@/components/motion/scroll-progress';
 import { Hero } from '@/components/sections/hero';
 import { CapabilityStrip } from '@/components/sections/capability-strip';
@@ -31,7 +30,6 @@ export default async function Home() {
   return (
     <>
       <ScrollProgress />
-      <AnnouncementBar text={p.availability_text} />
       <Navbar />
       <main>
         <Hero profile={p} />

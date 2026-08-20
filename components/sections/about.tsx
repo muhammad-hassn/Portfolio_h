@@ -30,14 +30,6 @@ export function About({ profile }: { profile: Profile }) {
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
             </div>
-            <div className="absolute -bottom-4 -right-4 rounded-xl border border-border bg-card/80 p-3 backdrop-blur-sm">
-              <div className="flex items-center gap-2">
-                <span className="flex h-2 w-2 rounded-full bg-success animate-pulse-glow" />
-                <span className="text-xs font-medium text-muted-foreground">
-                  {profile.availability_text}
-                </span>
-              </div>
-            </div>
           </FadeUp>
 
           {/* About text */}

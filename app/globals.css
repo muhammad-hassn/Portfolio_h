@@ -163,3 +163,23 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Ensure media and objects scale down */
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent text overflow */
+  * {
+    word-break: break-word;
+  }
+}
