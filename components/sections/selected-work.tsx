@@ -8,8 +8,11 @@ import type { Project } from '@/lib/types';
 import { FadeUp, Stagger, StaggerItem } from '@/components/motion/motion';
 import { useRef, useState, useCallback } from 'react';
 
-export function SelectedWork({ projects }: { projects: Project[] }) {
-  if (!projects.length) return null;
+import fallbackProjectsData from '@/lib/fallback-projects.json';
+
+export function SelectedWork({ projects }: { projects?: Project[] }) {
+  const displayProjects = projects && projects.length > 0 ? projects : (fallbackProjectsData as Project[]);
+  if (!displayProjects.length) return null;
 
   return (
     <section id="work" className="relative scroll-mt-20 py-24 md:py-32">
@@ -27,7 +30,7 @@ export function SelectedWork({ projects }: { projects: Project[] }) {
         </FadeUp>
 
         <Stagger staggerChildren={0.12} className="mt-14 grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
+          {displayProjects.map((project) => (
             <StaggerItem key={project.id}>
               <ProjectCard project={project} />
             </StaggerItem>

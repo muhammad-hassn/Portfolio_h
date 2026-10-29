@@ -10,6 +10,7 @@ import { Contact } from '@/components/sections/contact';
 import { getProfile, getSkills, getProjects, getServices } from '@/lib/data';
 import { DEFAULT_PROFILE } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function Home() {
