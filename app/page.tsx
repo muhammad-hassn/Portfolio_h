@@ -2,27 +2,22 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollProgress } from '@/components/motion/scroll-progress';
 import { Hero } from '@/components/sections/hero';
-import { CapabilityStrip } from '@/components/sections/capability-strip';
-import { Services } from '@/components/sections/services';
-import { Problems } from '@/components/sections/problems';
 import { SelectedWork } from '@/components/sections/selected-work';
-import { Process } from '@/components/sections/process';
-import { WhyWorkWithMe } from '@/components/sections/why-work-with-me';
+import { Capabilities } from '@/components/sections/capabilities';
 import { TechStack } from '@/components/sections/tech-stack';
-import { About } from '@/components/sections/about';
+import { Process } from '@/components/sections/process';
 import { Contact } from '@/components/sections/contact';
-import { getProfile, getServices, getProblems, getSkills, getProjects } from '@/lib/data';
+import { getProfile, getSkills, getProjects, getServices } from '@/lib/data';
 import { DEFAULT_PROFILE } from '@/lib/types';
 
 export const revalidate = 0;
 
 export default async function Home() {
-  const [profile, services, problems, skills, projects] = await Promise.all([
+  const [profile, skills, projects, services] = await Promise.all([
     getProfile(),
-    getServices(),
-    getProblems(),
     getSkills(),
     getProjects(),
+    getServices(),
   ]);
 
   const p = profile ?? DEFAULT_PROFILE;
@@ -31,17 +26,13 @@ export default async function Home() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main className="relative flex flex-col min-h-screen">
         <Hero profile={p} />
-        <CapabilityStrip />
-        <Services services={services} />
-        <Problems problems={problems} />
         <SelectedWork projects={projects} />
-        <Process />
-        <WhyWorkWithMe />
+        <Capabilities services={services} />
         <TechStack skills={skills} />
-        <About profile={p} />
-        <Contact />
+        <Process />
+        <Contact profile={p} />
       </main>
       <Footer profile={p} />
     </>

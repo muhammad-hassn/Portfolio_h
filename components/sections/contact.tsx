@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Loader2, Mail, Github, Linkedin, Calendar } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -14,25 +14,29 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { supabase } from '@/lib/supabase/client';
-import { PROJECT_TYPES } from '@/lib/types';
+import { PROJECT_TYPES, type Profile } from '@/lib/types';
 import { FadeUp } from '@/components/motion/motion';
 
-export function Contact() {
+export function Contact({ profile }: { profile?: Profile }) {
   const reduce = useReducedMotion();
   const [form, setForm] = useState({ name: '', email: '', project_type: '', message: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
+  const email = profile?.email || 'm.hassn.2005@gmail.com';
+  const github = profile?.github_url || 'https://github.com/muhammad-hassn';
+  const linkedin = profile?.linkedin_url || 'https://www.linkedin.com/in/muhammad-hassan-45129031b/';
+
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = 'Please enter your name.';
     if (!form.email.trim()) e.email = 'Please enter your email.';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Please enter a valid email.';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Please enter a valid work email.';
     if (!form.project_type) e.project_type = 'Please select a project type.';
-    if (!form.message.trim()) e.message = 'Please tell me about your project.';
-    else if (form.message.length < 10) e.message = 'Please provide a bit more detail (at least 10 characters).';
-    else if (form.message.length > 2000) e.message = 'Message is too long (max 2000 characters).';
+    if (!form.message.trim()) e.message = 'Please provide details about the project or challenge.';
+    else if (form.message.length < 10) e.message = 'Please provide a bit more context (minimum 10 characters).';
+    else if (form.message.length > 2000) e.message = 'Message exceeds 2000 characters.';
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -55,149 +59,249 @@ export function Contact() {
 
       setStatus('success');
       setForm({ name: '', email: '', project_type: '', message: '' });
-      setTimeout(() => setStatus('idle'), 5000);
+      setTimeout(() => setStatus('idle'), 6000);
     } catch (err: any) {
       setStatus('error');
-      setErrorMsg('Something went wrong sending your message. Please try again or email me directly.');
+      setErrorMsg('Could not submit the form right now. Please email directly at ' + email);
     }
   };
 
   return (
-    <section id="contact" className="relative scroll-mt-20 border-t border-border/40 bg-background-soft/30 py-20 md:py-28">
+    <section id="contact" className="relative scroll-mt-20 py-24 md:py-32 border-t border-white/[0.04]">
+      {/* Background Glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[400px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.04] blur-[140px]" />
       </div>
 
-      <div className="mx-auto max-w-3xl px-4 md:px-6">
-        <FadeUp className="text-center">
+      <div className="mx-auto max-w-5xl px-4 md:px-6">
+        <FadeUp className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Contact
+            Initiate Contact
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
-            Have a Project in Mind?
+            Let's Build Something High-Impact
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-muted-foreground text-pretty">
-            Tell me what you're trying to build, automate or improve. I'll review the idea and get back to you.
+          <p className="mt-4 text-base text-muted-foreground text-pretty">
+            Whether you need a full-stack product, an autonomous AI pipeline, or high-scale system architecture, let's connect.
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.15} className="mt-10">
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-2xl border border-border bg-card/40 p-6 sm:p-8"
-          >
-            <div className="grid gap-5">
-              <div className="grid gap-2">
-                <Label htmlFor="name" className="text-sm font-medium">Name</Label>
-                <Input
-                  id="name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Your name"
-                  aria-invalid={!!errors.name}
-                  className={errors.name ? 'border-destructive' : ''}
-                />
-                {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+        <div className="mt-14 grid gap-8 lg:grid-cols-5">
+          {/* Direct channels column */}
+          <FadeUp delay={0.1} className="lg:col-span-2 flex flex-col justify-between space-y-6">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-sm space-y-6">
+              <div>
+                <h3 className="font-display text-base font-semibold text-foreground">
+                  Direct Inquiries
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Typical response within 24 business hours.
+                </p>
               </div>
 
-              <div className="grid gap-2">
-                <Label htmlFor="email" className="text-sm font-medium">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="you@company.com"
-                  aria-invalid={!!errors.email}
-                  className={errors.email ? 'border-destructive' : ''}
-                />
-                {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="project_type" className="text-sm font-medium">Project Type</Label>
-                <Select
-                  value={form.project_type}
-                  onValueChange={(v) => setForm({ ...form, project_type: v })}
+              <div className="space-y-4">
+                <a
+                  href={`mailto:${email}`}
+                  className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
                 >
-                  <SelectTrigger id="project_type" className={errors.project_type ? 'border-destructive' : ''}>
-                    <SelectValue placeholder="Select a project type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {PROJECT_TYPES.map((type) => (
-                      <SelectItem key={type} value={type}>{type}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errors.project_type && <p className="text-xs text-destructive">{errors.project_type}</p>}
-              </div>
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <Mail className="h-4 w-4" />
+                  </div>
+                  <div className="truncate">
+                    <span className="block text-[11px] font-mono text-muted-foreground/80">EMAIL</span>
+                    <span className="truncate font-medium">{email}</span>
+                  </div>
+                </a>
 
-              <div className="grid gap-2">
-                <Label htmlFor="message" className="text-sm font-medium">Message</Label>
-                <Textarea
-                  id="message"
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Tell me about your project, what you're trying to build or automate..."
-                  rows={5}
-                  maxLength={2000}
-                  aria-invalid={!!errors.message}
-                  className={errors.message ? 'border-destructive' : ''}
-                />
-                <div className="flex items-center justify-between">
-                  {errors.message ? (
-                    <p className="text-xs text-destructive">{errors.message}</p>
-                  ) : <span />}
-                  <span className="text-xs text-muted-foreground/60">{form.message.length}/2000</span>
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={status === 'loading' || status === 'success'}
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 className="h-4 w-4 animate-spin" /> Sending...
-                  </>
-                ) : status === 'success' ? (
-                  <>
-                    <CheckCircle2 className="h-4 w-4" /> Message Sent
-                  </>
-                ) : (
-                  <>
-                    Start a Conversation
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </>
-                )}
-              </button>
-
-              <AnimatePresence>
-                {status === 'success' && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center text-sm text-success"
+                {linkedin && (
+                  <a
+                    href={linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
                   >
-                    Thanks for reaching out! I'll get back to you soon.
-                  </motion.p>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Linkedin className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="block text-[11px] font-mono text-muted-foreground/80">LINKEDIN</span>
+                      <span className="font-medium">Connect on LinkedIn</span>
+                    </div>
+                  </a>
                 )}
-                {status === 'error' && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-center text-sm text-destructive"
+
+                {github && (
+                  <a
+                    href={github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
                   >
-                    {errorMsg}
-                  </motion.p>
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <Github className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <span className="block text-[11px] font-mono text-muted-foreground/80">GITHUB</span>
+                      <span className="font-medium">Browse Code Repositories</span>
+                    </div>
+                  </a>
                 )}
-              </AnimatePresence>
+              </div>
             </div>
-          </form>
-        </FadeUp>
+
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-primary/10 via-white/[0.02] to-transparent p-6 backdrop-blur-sm">
+              <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
+                Engineering Availability
+              </span>
+              <p className="mt-2 text-sm text-foreground font-medium">
+                Taking on select contracts & architecture roles
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Available for high-stakes web apps, AI integrations, and technical advisory.
+              </p>
+            </div>
+          </FadeUp>
+
+          {/* Form column */}
+          <FadeUp delay={0.15} className="lg:col-span-3">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 backdrop-blur-sm"
+            >
+              <div className="grid gap-5">
+                <div className="grid gap-2">
+                  <Label htmlFor="name" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="Your name or company"
+                    aria-invalid={!!errors.name}
+                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                  />
+                  {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="email" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Work Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    placeholder="you@company.com"
+                    aria-invalid={!!errors.email}
+                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                  />
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="project_type" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Project Scope
+                  </Label>
+                  <Select
+                    value={form.project_type}
+                    onValueChange={(v) => setForm({ ...form, project_type: v })}
+                  >
+                    <SelectTrigger
+                      id="project_type"
+                      className="border-white/[0.08] bg-white/[0.02] text-foreground focus:border-primary/50"
+                    >
+                      <SelectValue placeholder="Select project type" />
+                    </SelectTrigger>
+                    <SelectContent className="border-white/[0.1] bg-[#121215]">
+                      {PROJECT_TYPES.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.project_type && (
+                    <p className="text-xs text-destructive">{errors.project_type}</p>
+                  )}
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="message" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Project Details & Goals
+                  </Label>
+                  <Textarea
+                    id="message"
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    placeholder="Briefly describe what you're building, the timeline, and technical objectives..."
+                    rows={4}
+                    maxLength={2000}
+                    aria-invalid={!!errors.message}
+                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                  />
+                  <div className="flex items-center justify-between">
+                    {errors.message ? (
+                      <p className="text-xs text-destructive">{errors.message}</p>
+                    ) : (
+                      <span />
+                    )}
+                    <span className="text-[10px] text-muted-foreground/60">{form.message.length}/2000</span>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading' || status === 'success'}
+                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.4)] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+                    </>
+                  ) : status === 'success' ? (
+                    <>
+                      <CheckCircle2 className="h-4 w-4" /> Message Sent Successfully
+                    </>
+                  ) : (
+                    <>
+                      Send Inquiry
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </>
+                  )}
+                </button>
+
+                <AnimatePresence>
+                  {status === 'success' && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="text-center text-sm text-emerald-400"
+                    >
+                      Thanks for reaching out! I will review your message and respond promptly.
+                    </motion.p>
+                  )}
+                  {status === 'error' && (
+                    <motion.p
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="text-center text-sm text-destructive"
+                    >
+                      {errorMsg}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </div>
+            </form>
+          </FadeUp>
+        </div>
       </div>
     </section>
   );

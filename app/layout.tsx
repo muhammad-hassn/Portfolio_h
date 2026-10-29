@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
 
 const inter = Inter({
@@ -27,21 +27,24 @@ const SITE_URL = 'https://muhammadhassan.dev';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Muhammad Hassan | AI Automation & Full-Stack Developer',
-    template: '%s | Muhammad Hassan',
+    default: 'Hassan — Full-Stack & AI Engineer',
+    template: '%s | Hassan',
   },
   description:
-    'I build AI-powered applications, business websites, automation workflows, APIs and custom software for businesses and startups.',
+    'I build scalable web, mobile, and AI-powered products. Full-stack engineering with Next.js, React, Django, FastAPI, Flutter, and modern AI tooling.',
   keywords: [
-    'AI automation developer',
-    'AI developer',
-    'automation developer',
+    'full-stack engineer',
+    'AI engineer',
+    'software engineer',
     'Next.js developer',
-    'full-stack developer',
-    'FastAPI developer',
-    'AI integration',
-    'n8n automation',
-    'custom software development',
+    'React developer',
+    'Django developer',
+    'FastAPI',
+    'Flutter developer',
+    'AI automation',
+    'web development',
+    'mobile development',
+    'product engineering',
   ],
   authors: [{ name: 'Muhammad Hassan' }],
   creator: 'Muhammad Hassan',
@@ -49,21 +52,40 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: SITE_URL,
-    siteName: 'Muhammad Hassan',
-    title: 'Muhammad Hassan | AI Automation & Full-Stack Developer',
+    siteName: 'Hassan — Engineer',
+    title: 'Hassan — Full-Stack & AI Engineer',
     description:
-      'I build AI-powered applications, business websites, automation workflows, APIs and custom software for businesses and startups.',
+      'I build scalable web, mobile, and AI-powered products.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Muhammad Hassan | AI Automation & Full-Stack Developer',
+    title: 'Hassan — Full-Stack & AI Engineer',
     description:
-      'I build AI-powered applications, business websites, automation workflows, APIs and custom software for businesses and startups.',
+      'I build scalable web, mobile, and AI-powered products.',
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Muhammad Hassan',
+  jobTitle: 'Full-Stack & AI Engineer',
+  url: SITE_URL,
+  sameAs: [
+    'https://github.com/muhammadhassan',
+    'https://linkedin.com/in/muhammadhassan',
+  ],
+  knowsAbout: [
+    'Full-Stack Development',
+    'AI Engineering',
+    'Web Applications',
+    'Mobile Development',
+    'Automation',
+  ],
 };
 
 export default function RootLayout({
@@ -73,6 +95,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${display.variable} ${mono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-screen bg-background font-sans text-foreground">
         {children}
         <Toaster

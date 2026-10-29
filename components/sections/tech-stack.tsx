@@ -1,72 +1,120 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
+import { useMemo } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { Skill } from '@/lib/types';
 import { FadeUp } from '@/components/motion/motion';
-import { SKILL_CATEGORIES } from '@/lib/types';
+
+const CURATED_STACK = [
+  { name: 'Next.js 14', category: 'framework' },
+  { name: 'TypeScript', category: 'language' },
+  { name: 'React', category: 'frontend' },
+  { name: 'Python', category: 'language' },
+  { name: 'Node.js', category: 'backend' },
+  { name: 'PostgreSQL', category: 'database' },
+  { name: 'Tailwind CSS', category: 'frontend' },
+  { name: 'OpenAI / Claude', category: 'ai' },
+  { name: 'LangChain', category: 'ai' },
+  { name: 'Docker', category: 'devops' },
+  { name: 'Supabase', category: 'backend' },
+  { name: 'Redis', category: 'database' },
+  { name: 'React Native', category: 'mobile' },
+  { name: 'GraphQL / REST', category: 'api' },
+  { name: 'Three.js / WebGL', category: 'graphics' },
+  { name: 'Git & GitHub CI', category: 'devops' },
+];
 
 export function TechStack({ skills }: { skills: Skill[] }) {
-  const [active, setActive] = useState<string>('all');
   const reduce = useReducedMotion();
 
-  const categories = ['all', ...SKILL_CATEGORIES];
-  const filtered = active === 'all' ? skills : skills.filter((s) => s.category === active);
+  // Combine prop skills with curated stack
+  const stackItems = useMemo(() => {
+    if (skills && skills.length > 0) {
+      return skills.map((s) => ({ name: s.name, category: s.category }));
+    }
+    return CURATED_STACK;
+  }, [skills]);
+
+  // Duplicate items for continuous marquee
+  const row1 = stackItems.slice(0, Math.ceil(stackItems.length / 2));
+  const row2 = stackItems.slice(Math.ceil(stackItems.length / 2));
 
   return (
-    <section id="tech" className="relative scroll-mt-20 border-t border-border/40 bg-background-soft/30 py-20 md:py-28">
+    <section id="tech" className="relative scroll-mt-20 py-24 md:py-32 border-t border-white/[0.04] overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <FadeUp className="max-w-2xl">
+        <FadeUp className="max-w-2xl text-center mx-auto">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-            Technology
+            Technologies
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
-            Technology I Use
+            Modern Engineering Stack
           </h2>
           <p className="mt-4 text-base text-muted-foreground text-pretty">
-            A focused toolkit for building reliable, production-ready systems.
+            A production-proven toolkit chosen for reliability, high performance, and rapid execution.
           </p>
         </FadeUp>
+      </div>
 
-        {/* Category tabs */}
-        <div className="mt-10 flex flex-wrap gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`rounded-lg border px-3.5 py-1.5 text-sm font-medium capitalize transition-all ${
-                active === cat
-                  ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-border bg-card/40 text-muted-foreground hover:border-primary/30 hover:text-foreground'
-              }`}
-            >
-              {cat === 'all' ? 'All' : cat}
-            </button>
-          ))}
+      {/* Marquee Containers */}
+      <div className="mt-14 relative w-full space-y-4">
+        {/* Left & Right gradient masks */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-background to-transparent z-10" />
+
+        {/* Row 1: Leftward continuous scroll */}
+        <div className="flex w-full overflow-hidden select-none">
+          <motion.div
+            className="flex gap-3 shrink-0 items-center py-1"
+            animate={reduce ? {} : { x: ['0%', '-50%'] }}
+            transition={{
+              duration: 35,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+          >
+            {[...row1, ...row1, ...row1, ...row1].map((item, idx) => (
+              <div
+                key={`r1-${item.name}-${idx}`}
+                className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 backdrop-blur-sm transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <span className="font-display text-sm font-semibold tracking-tight text-foreground">
+                  {item.name}
+                </span>
+                <span className="font-mono text-[10px] uppercase text-muted-foreground/60">
+                  {item.category}
+                </span>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Skills grid */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((skill, i) => (
-              <motion.div
-                key={skill.id}
-                layout
-                initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.25, delay: i * 0.03 }}
-                className="group flex flex-col items-center gap-2 rounded-xl border border-border bg-card/40 p-4 transition-colors hover:border-primary/30"
+        {/* Row 2: Rightward continuous scroll */}
+        <div className="flex w-full overflow-hidden select-none">
+          <motion.div
+            className="flex gap-3 shrink-0 items-center py-1"
+            animate={reduce ? {} : { x: ['-50%', '0%'] }}
+            transition={{
+              duration: 35,
+              ease: 'linear',
+              repeat: Infinity,
+            }}
+          >
+            {[...row2, ...row2, ...row2, ...row2].map((item, idx) => (
+              <div
+                key={`r2-${item.name}-${idx}`}
+                className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 backdrop-blur-sm transition-colors hover:border-emerald-500/40 hover:bg-white/[0.05]"
               >
-                <span className="font-display text-sm font-semibold tracking-tight">
-                  {skill.name}
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="font-display text-sm font-semibold tracking-tight text-foreground">
+                  {item.name}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground/60">
-                  {skill.category}
+                <span className="font-mono text-[10px] uppercase text-muted-foreground/60">
+                  {item.category}
                 </span>
-              </motion.div>
+              </div>
             ))}
-          </AnimatePresence>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -24,8 +24,15 @@ const config: Config = {
         display: ['var(--font-display)', 'var(--font-inter)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
       },
+      letterSpacing: {
+        tighter: '-0.04em',
+        tight: '-0.025em',
+      },
       colors: {
-        background: 'hsl(var(--background))',
+        background: {
+          DEFAULT: 'hsl(var(--background))',
+          soft: 'hsl(var(--background-soft))',
+        },
         foreground: 'hsl(var(--foreground))',
         card: {
           DEFAULT: 'hsl(var(--card))',

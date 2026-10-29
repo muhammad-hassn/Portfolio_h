@@ -87,16 +87,16 @@ export type ContactMessage = {
 export const DEFAULT_PROFILE: Profile = {
   id: '',
   name: 'Muhammad Hassan',
-  professional_title: 'AI Automation & Full-Stack Developer',
-  hero_headline: 'I Build AI-Powered Systems That Help Businesses Work Smarter.',
+  professional_title: 'Full-Stack & AI Engineer',
+  hero_headline: 'I build scalable web, mobile and AI-powered products.',
   hero_description:
-    'I help businesses build modern websites, AI applications, automation workflows, APIs and custom software that solve real problems and reduce repetitive work.',
+    'Full-stack engineer specializing in production-grade applications, intelligent automation, and end-to-end product development.',
   about:
-    'I’m Muhammad Hassan, an AI & Software Engineering developer focused on building practical digital products, automation systems and AI-powered applications. I work across frontend, backend, APIs, databases, automation and AI integration to turn business requirements into working software. My goal is simple: build technology that solves a real problem, saves time, improves workflows or creates a better digital experience. I’m currently completing my BS in Software Engineering at PAF KIET.',
+    "I architect and ship software across the full stack \u2014 from responsive frontends to scalable APIs to AI-driven automation. I work with Next.js, React, Django, FastAPI, Flutter, and modern AI tooling to deliver products that solve real problems. Currently completing my BS in Software Engineering at PAF KIET.",
   profile_image_url: null,
   email: 'hello@muhammadhassan.dev',
   location: 'Karachi, Pakistan',
-  availability_text: 'Available for freelance projects and collaborations.',
+  availability_text: 'Open to new projects and engineering partnerships.',
   github_url: 'https://github.com/muhammadhassan',
   linkedin_url: 'https://linkedin.com/in/muhammadhassan',
   website_url: null,
