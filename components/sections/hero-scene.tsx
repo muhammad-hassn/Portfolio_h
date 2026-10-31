@@ -17,9 +17,9 @@ function WireframeMesh({ isMobile }: { isMobile: boolean }) {
     if (!meshRef.current) return;
 
     if (isMobile) {
-      // Mobile: pure steady rotation without pointer tracking so page scroll remains completely smooth
-      meshRef.current.rotation.y += 0.0025;
-      meshRef.current.rotation.x += 0.0012;
+      // Mobile: pure steady slow rotation without pointer tracking so page scroll remains completely smooth
+      meshRef.current.rotation.y += 0.0022;
+      meshRef.current.rotation.x += 0.001;
     } else {
       // Desktop: slow rotation + gentle mouse parallax
       const { pointer } = state;
@@ -50,16 +50,17 @@ function WireframeMesh({ isMobile }: { isMobile: boolean }) {
   return (
     <Float
       speed={isMobile ? 1.0 : 1.5}
-      rotationIntensity={isMobile ? 0.15 : 0.3}
-      floatIntensity={isMobile ? 0.3 : 0.5}
+      rotationIntensity={isMobile ? 0.12 : 0.3}
+      floatIntensity={isMobile ? 0.25 : 0.5}
     >
-      <group ref={meshRef}>
+      {/* On mobile, scale up slightly so it fills ~70% of the showcase card without dead space */}
+      <group ref={meshRef} scale={isMobile ? 1.25 : 1.0}>
         {/* Wireframe outer edges */}
         <lineSegments geometry={edgeGeometry}>
           <lineBasicMaterial
             color="#6366F1"
             transparent
-            opacity={isMobile ? 0.65 : 0.5}
+            opacity={isMobile ? 0.75 : 0.5}
             linewidth={1}
           />
         </lineSegments>
@@ -69,7 +70,7 @@ function WireframeMesh({ isMobile }: { isMobile: boolean }) {
           <meshBasicMaterial
             color="#6366F1"
             transparent
-            opacity={0.04}
+            opacity={0.05}
             side={THREE.BackSide}
           />
         </mesh>
@@ -78,9 +79,9 @@ function WireframeMesh({ isMobile }: { isMobile: boolean }) {
         <points geometry={pointsGeometry}>
           <pointsMaterial
             color="#818CF8"
-            size={isMobile ? 0.06 : 0.04}
+            size={isMobile ? 0.07 : 0.04}
             transparent
-            opacity={0.85}
+            opacity={0.9}
             sizeAttenuation
           />
         </points>
@@ -91,37 +92,37 @@ function WireframeMesh({ isMobile }: { isMobile: boolean }) {
 
 /**
  * Static poster fallback for weak devices (concurrency <= 4) or prefers-reduced-motion.
- * Zero WebGL overhead, crisp SVG aesthetic that perfectly mirrors the 3D scene.
+ * Zero WebGL overhead, crisp SVG aesthetic that fills ~70% of the card with ambient glow.
  */
 export function HeroPosterFallback() {
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-2xl">
-      {/* Ambient background glows */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-background to-accent-2/10" />
-      <div className="absolute h-40 w-40 rounded-full bg-primary/20 blur-3xl animate-pulse-glow" />
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/25 via-primary/5 to-transparent blur-2xl" />
+      <div className="absolute h-48 w-48 rounded-full bg-primary/20 blur-3xl animate-pulse-glow" />
 
       {/* Styled Geometric Vector Fallback */}
       <svg
-        className="relative h-44 w-44 sm:h-56 sm:w-56 text-primary/70 animate-float-y"
+        className="relative h-56 w-56 sm:h-64 sm:w-64 text-primary/75 animate-float-y"
         viewBox="0 0 100 100"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.2"
         aria-hidden="true"
       >
-        <polygon points="50,10 88,32 88,72 50,92 12,72 12,32" stroke="currentColor" opacity="0.4" />
-        <polygon points="50,18 80,36 80,68 50,84 20,68 20,36" stroke="currentColor" opacity="0.7" />
-        <polygon points="50,26 72,39 72,63 50,76 28,63 28,39" stroke="hsl(var(--accent-2))" opacity="0.8" />
-        <line x1="50" y1="18" x2="50" y2="84" stroke="currentColor" opacity="0.5" />
-        <line x1="20" y1="36" x2="80" y2="68" stroke="currentColor" opacity="0.5" />
-        <line x1="20" y1="68" x2="80" y2="36" stroke="currentColor" opacity="0.5" />
-        <circle cx="50" cy="50" r="3" fill="#818CF8" />
-        <circle cx="50" cy="18" r="2" fill="#6366F1" />
-        <circle cx="80" cy="36" r="2" fill="#6366F1" />
-        <circle cx="80" cy="68" r="2" fill="#6366F1" />
-        <circle cx="50" cy="84" r="2" fill="#6366F1" />
-        <circle cx="20" cy="68" r="2" fill="#6366F1" />
-        <circle cx="20" cy="36" r="2" fill="#6366F1" />
+        <polygon points="50,8 90,31 90,73 50,94 10,73 10,31" stroke="currentColor" opacity="0.35" />
+        <polygon points="50,16 82,35 82,69 50,86 18,69 18,35" stroke="currentColor" opacity="0.75" />
+        <polygon points="50,25 74,38 74,64 50,77 26,64 26,38" stroke="hsl(var(--accent-2))" opacity="0.85" />
+        <line x1="50" y1="16" x2="50" y2="86" stroke="currentColor" opacity="0.5" />
+        <line x1="18" y1="35" x2="82" y2="69" stroke="currentColor" opacity="0.5" />
+        <line x1="18" y1="69" x2="82" y2="35" stroke="currentColor" opacity="0.5" />
+        <circle cx="50" cy="51" r="3.5" fill="#818CF8" />
+        <circle cx="50" cy="16" r="2.5" fill="#6366F1" />
+        <circle cx="82" cy="35" r="2.5" fill="#6366F1" />
+        <circle cx="82" cy="69" r="2.5" fill="#6366F1" />
+        <circle cx="50" cy="86" r="2.5" fill="#6366F1" />
+        <circle cx="18" cy="69" r="2.5" fill="#6366F1" />
+        <circle cx="18" cy="35" r="2.5" fill="#6366F1" />
       </svg>
     </div>
   );
@@ -189,10 +190,10 @@ export function HeroScene({ isMobile: forcedIsMobile }: SceneProps) {
       <Suspense fallback={<HeroPosterFallback />}>
         <Canvas
           camera={{
-            position: [0, 0, isMobile ? 6.5 : 6],
-            fov: isMobile ? 42 : 45,
+            position: [0, 0, isMobile ? 4.7 : 6],
+            fov: isMobile ? 44 : 45,
           }}
-          dpr={isMobile ? [1, 1.25] : [1, 1.5]}
+          dpr={isMobile ? [1, 1.5] : [1, 1.5]}
           gl={{
             antialias: !isMobile,
             alpha: true,

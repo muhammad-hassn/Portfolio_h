@@ -142,6 +142,31 @@
 
 /* ═══ Keyframes ═══ */
 
+@keyframes float-chip-1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes float-chip-2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes float-chip-3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-float-chip-1 {
+  animation: float-chip-1 4.5s ease-in-out infinite;
+}
+.animate-float-chip-2 {
+  animation: float-chip-2 5.5s ease-in-out infinite 0.7s;
+}
+.animate-float-chip-3 {
+  animation: float-chip-3 5s ease-in-out infinite 1.4s;
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
