@@ -27,7 +27,7 @@ export default async function Home() {
     <>
       <ScrollProgress />
       <Navbar />
-      <main className="relative flex flex-col min-h-screen">
+      <main className="relative flex flex-col min-h-screen overflow-x-hidden">
         <Hero profile={p} />
         <SelectedWork projects={projects} />
         <Capabilities services={services} />

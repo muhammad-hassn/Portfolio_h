@@ -133,8 +133,10 @@
     transform-style: preserve-3d;
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .tilt-card:hover {
-    transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  @media (hover: hover) {
+    .tilt-card:hover {
+      transform: perspective(800px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+    }
   }
 }
 
@@ -213,9 +215,12 @@
     width: 100% !important;
     max-width: 100vw !important;
   }
-  img, video, canvas, svg {
+  img, video, svg {
     max-width: 100%;
     height: auto;
+  }
+  canvas {
+    max-width: 100%;
   }
   * {
     word-break: break-word;

@@ -67,49 +67,49 @@ export function Contact({ profile }: { profile?: Profile }) {
   };
 
   return (
-    <section id="contact" className="relative scroll-mt-20 py-24 md:py-32 border-t border-white/[0.04]">
+    <section id="contact" className="relative scroll-mt-20 py-14 sm:py-20 md:py-28 lg:py-32 border-t border-white/[0.04]">
       {/* Background Glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.04] blur-[140px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/2 top-1/2 h-[400px] sm:h-[500px] w-[500px] sm:w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.04] blur-[100px] sm:blur-[140px]" />
       </div>
 
-      <div className="mx-auto max-w-5xl px-4 md:px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <FadeUp className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
             Initiate Contact
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
             Let's Build Something High-Impact
           </h2>
-          <p className="mt-4 text-base text-muted-foreground text-pretty">
+          <p className="mt-3 sm:mt-4 text-[15px] sm:text-base leading-relaxed text-muted-foreground text-pretty">
             Whether you need a full-stack product, an autonomous AI pipeline, or high-scale system architecture, let's connect.
           </p>
         </FadeUp>
 
-        <div className="mt-14 grid gap-8 lg:grid-cols-5">
+        <div className="mt-8 sm:mt-14 grid gap-6 sm:gap-8 lg:grid-cols-5">
           {/* Direct channels column */}
-          <FadeUp delay={0.1} className="lg:col-span-2 flex flex-col justify-between space-y-6">
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-sm space-y-6">
+          <FadeUp delay={0.1} className="lg:col-span-2 flex flex-col justify-between space-y-4 sm:space-y-6">
+            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm space-y-5">
               <div>
                 <h3 className="font-display text-base font-semibold text-foreground">
                   Direct Inquiries
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
                   Typical response within 24 business hours.
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
+                  className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-all hover:border-primary/40 hover:bg-white/[0.05] active:scale-[0.98] min-w-0"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                     <Mail className="h-4 w-4" />
                   </div>
-                  <div className="truncate">
-                    <span className="block text-[11px] font-mono text-muted-foreground/80">EMAIL</span>
-                    <span className="truncate font-medium">{email}</span>
+                  <div className="truncate min-w-0">
+                    <span className="block text-[10px] font-mono text-muted-foreground/80">EMAIL</span>
+                    <span className="truncate block font-medium text-xs sm:text-sm">{email}</span>
                   </div>
                 </a>
 
@@ -118,14 +118,14 @@ export function Contact({ profile }: { profile?: Profile }) {
                     href={linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
+                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-all hover:border-primary/40 hover:bg-white/[0.05] active:scale-[0.98] min-w-0"
                   >
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Linkedin className="h-4 w-4" />
                     </div>
-                    <div>
-                      <span className="block text-[11px] font-mono text-muted-foreground/80">LINKEDIN</span>
-                      <span className="font-medium">Connect on LinkedIn</span>
+                    <div className="truncate min-w-0">
+                      <span className="block text-[10px] font-mono text-muted-foreground/80">LINKEDIN</span>
+                      <span className="truncate block font-medium text-xs sm:text-sm">Connect on LinkedIn</span>
                     </div>
                   </a>
                 )}
@@ -135,21 +135,21 @@ export function Contact({ profile }: { profile?: Profile }) {
                     href={github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
+                    className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-sm text-foreground transition-all hover:border-primary/40 hover:bg-white/[0.05] active:scale-[0.98] min-w-0"
                   >
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                       <Github className="h-4 w-4" />
                     </div>
-                    <div>
-                      <span className="block text-[11px] font-mono text-muted-foreground/80">GITHUB</span>
-                      <span className="font-medium">Browse Code Repositories</span>
+                    <div className="truncate min-w-0">
+                      <span className="block text-[10px] font-mono text-muted-foreground/80">GITHUB</span>
+                      <span className="truncate block font-medium text-xs sm:text-sm">Browse Code Repositories</span>
                     </div>
                   </a>
                 )}
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-primary/10 via-white/[0.02] to-transparent p-6 backdrop-blur-sm">
+            <div className="rounded-2xl border border-white/[0.06] bg-gradient-to-br from-primary/10 via-white/[0.02] to-transparent p-5 sm:p-6 backdrop-blur-sm">
               <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -157,10 +157,10 @@ export function Contact({ profile }: { profile?: Profile }) {
                 </span>
                 Engineering Availability
               </span>
-              <p className="mt-2 text-sm text-foreground font-medium">
-                Taking on select contracts & architecture roles
+              <p className="mt-2 text-xs sm:text-sm text-foreground font-medium">
+                Taking on select contracts &amp; architecture roles
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="mt-1 text-[11px] sm:text-xs text-muted-foreground">
                 Available for high-stakes web apps, AI integrations, and technical advisory.
               </p>
             </div>
@@ -170,10 +170,10 @@ export function Contact({ profile }: { profile?: Profile }) {
           <FadeUp delay={0.15} className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-8 backdrop-blur-sm"
+              className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 sm:p-8 backdrop-blur-sm"
             >
-              <div className="grid gap-5">
-                <div className="grid gap-2">
+              <div className="grid gap-4 sm:gap-5">
+                <div className="grid gap-1.5 sm:gap-2">
                   <Label htmlFor="name" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Name
                   </Label>
@@ -183,12 +183,12 @@ export function Contact({ profile }: { profile?: Profile }) {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="Your name or company"
                     aria-invalid={!!errors.name}
-                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                    className="min-h-[46px] h-12 text-base sm:text-sm border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
                   />
                   {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
                 </div>
 
-                <div className="grid gap-2">
+                <div className="grid gap-1.5 sm:gap-2">
                   <Label htmlFor="email" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Work Email
                   </Label>
@@ -199,12 +199,12 @@ export function Contact({ profile }: { profile?: Profile }) {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="you@company.com"
                     aria-invalid={!!errors.email}
-                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                    className="min-h-[46px] h-12 text-base sm:text-sm border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
                   />
                   {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                 </div>
 
-                <div className="grid gap-2">
+                <div className="grid gap-1.5 sm:gap-2">
                   <Label htmlFor="project_type" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     Project Scope
                   </Label>
@@ -214,7 +214,7 @@ export function Contact({ profile }: { profile?: Profile }) {
                   >
                     <SelectTrigger
                       id="project_type"
-                      className="border-white/[0.08] bg-white/[0.02] text-foreground focus:border-primary/50"
+                      className="min-h-[46px] h-12 text-base sm:text-sm border-white/[0.08] bg-white/[0.02] text-foreground focus:border-primary/50"
                     >
                       <SelectValue placeholder="Select project type" />
                     </SelectTrigger>
@@ -231,9 +231,9 @@ export function Contact({ profile }: { profile?: Profile }) {
                   )}
                 </div>
 
-                <div className="grid gap-2">
+                <div className="grid gap-1.5 sm:gap-2">
                   <Label htmlFor="message" className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Project Details & Goals
+                    Project Details &amp; Goals
                   </Label>
                   <Textarea
                     id="message"
@@ -243,7 +243,7 @@ export function Contact({ profile }: { profile?: Profile }) {
                     rows={4}
                     maxLength={2000}
                     aria-invalid={!!errors.message}
-                    className="border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
+                    className="text-base sm:text-sm border-white/[0.08] bg-white/[0.02] focus:border-primary/50 text-foreground"
                   />
                   <div className="flex items-center justify-between">
                     {errors.message ? (
@@ -258,7 +258,7 @@ export function Contact({ profile }: { profile?: Profile }) {
                 <button
                   type="submit"
                   disabled={status === 'loading' || status === 'success'}
-                  className="group inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.4)] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="group inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-foreground shadow-glow-sm transition-all hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-60 active:scale-[0.98]"
                 >
                   {status === 'loading' ? (
                     <>
@@ -278,24 +278,24 @@ export function Contact({ profile }: { profile?: Profile }) {
 
                 <AnimatePresence>
                   {status === 'success' && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
+                    <motion.div
+                      initial={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="text-center text-sm text-emerald-400"
+                      className="rounded-xl border border-emerald-500/30 bg-emerald-950/20 p-4 text-xs sm:text-sm text-emerald-400"
                     >
-                      Thanks for reaching out! I will review your message and respond promptly.
-                    </motion.p>
+                      Thank you! Your message has been received. I'll get back to you shortly.
+                    </motion.div>
                   )}
                   {status === 'error' && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
+                    <motion.div
+                      initial={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
-                      className="text-center text-sm text-destructive"
+                      className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-xs sm:text-sm text-destructive"
                     >
                       {errorMsg}
-                    </motion.p>
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </div>

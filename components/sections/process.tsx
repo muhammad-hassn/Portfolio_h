@@ -46,21 +46,21 @@ export function Process() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="relative scroll-mt-20 py-24 md:py-32 border-t border-white/[0.04]">
-      <div className="mx-auto max-w-7xl px-4 md:px-6">
+    <section id="process" className="relative scroll-mt-20 py-14 sm:py-20 md:py-28 lg:py-32 border-t border-white/[0.04]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <FadeUp className="max-w-2xl">
           <span className="text-xs font-semibold uppercase tracking-wider text-primary">
             Methodology
           </span>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl">
             Engineering Process
           </h2>
-          <p className="mt-4 text-base text-muted-foreground text-pretty">
+          <p className="mt-3 sm:mt-4 text-[15px] sm:text-base leading-relaxed text-muted-foreground text-pretty">
             A disciplined, transparent delivery framework engineered to ship production software reliably.
           </p>
         </FadeUp>
 
-        {/* Desktop timeline */}
+        {/* Desktop timeline (md+) */}
         <div ref={ref} className="relative mt-16 hidden md:block">
           <div className="absolute left-0 right-0 top-10 h-[2px] bg-white/[0.06]" />
           <motion.div
@@ -99,30 +99,30 @@ export function Process() {
           </div>
         </div>
 
-        {/* Mobile timeline */}
-        <div className="mt-12 space-y-6 md:hidden">
+        {/* Mobile timeline (< md) */}
+        <div className="mt-8 space-y-3.5 sm:space-y-4 md:hidden">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             return (
               <motion.div
                 key={step.number}
-                initial={reduce ? { opacity: 0 } : { opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative flex gap-4 rounded-xl border border-white/[0.04] bg-white/[0.02] p-5"
+                transition={{ duration: 0.35, delay: i * 0.08 }}
+                className="relative flex items-start gap-3.5 sm:gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 sm:p-5 backdrop-blur-sm"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-background text-primary">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-primary">
                   <Icon className="h-5 w-5" />
                 </div>
-                <div>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-primary">
+                <div className="flex-1 min-w-0">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-primary font-semibold">
                     Phase {step.number}
                   </span>
-                  <h3 className="font-display text-base font-semibold text-foreground">
+                  <h3 className="mt-0.5 font-display text-sm sm:text-base font-semibold text-foreground">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-1 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                     {step.description}
                   </p>
                 </div>
