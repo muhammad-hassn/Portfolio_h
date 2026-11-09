@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
+import { FloatingWhatsApp } from '@/components/layout/floating-whatsapp';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,7 +23,7 @@ const mono = JetBrains_Mono({
   display: 'swap',
 });
 
-const SITE_URL = 'https://muhammadhassan.dev';
+const SITE_URL = 'https://portfolioh-rho.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     template: '%s | Hassan',
   },
   description:
-    'I build scalable web, mobile, and AI-powered products. Full-stack engineering with Next.js, React, Django, FastAPI, Flutter, and modern AI tooling.',
+    'I build scalable web and AI-powered products. Full-stack engineering with Next.js, React, Django, FastAPI, and modern AI tooling.',
   keywords: [
     'full-stack engineer',
     'AI engineer',
@@ -40,10 +41,8 @@ export const metadata: Metadata = {
     'React developer',
     'Django developer',
     'FastAPI',
-    'Flutter developer',
     'AI automation',
     'web development',
-    'mobile development',
     'product engineering',
   ],
   authors: [{ name: 'Muhammad Hassan' }],
@@ -55,13 +54,13 @@ export const metadata: Metadata = {
     siteName: 'Hassan — Engineer',
     title: 'Hassan — Full-Stack & AI Engineer',
     description:
-      'I build scalable web, mobile, and AI-powered products.',
+      'I build scalable web and AI-powered products.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hassan — Full-Stack & AI Engineer',
     description:
-      'I build scalable web, mobile, and AI-powered products.',
+      'I build scalable web and AI-powered products.',
   },
   robots: {
     index: true,
@@ -76,14 +75,13 @@ const jsonLd = {
   jobTitle: 'Full-Stack & AI Engineer',
   url: SITE_URL,
   sameAs: [
-    'https://github.com/muhammadhassan',
-    'https://linkedin.com/in/muhammadhassan',
+    'https://github.com/muhammad-hassn',
+    'https://www.linkedin.com/in/muhammad-hassan-31a43a319/',
   ],
   knowsAbout: [
     'Full-Stack Development',
     'AI Engineering',
     'Web Applications',
-    'Mobile Development',
     'Automation',
   ],
 };
@@ -103,6 +101,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-background font-sans text-foreground">
         {children}
+        <FloatingWhatsApp />
         <Toaster
           position="bottom-right"
           theme="dark"

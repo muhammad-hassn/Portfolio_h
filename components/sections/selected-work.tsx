@@ -47,7 +47,7 @@ export function SelectedWork({ projects }: { projects?: Project[] }) {
             Products I've Shipped
           </h2>
           <p className="mt-3 sm:mt-4 text-[15px] sm:text-base leading-relaxed text-muted-foreground text-pretty">
-            Real-world products spanning AI, automation, web and mobile — each solving a concrete problem.
+            Real-world products spanning AI, automation, and web — each solving a concrete problem.
           </p>
         </FadeUp>
 

@@ -35,7 +35,7 @@ const EMPTY: Omit<Project, 'id' | 'created_at' | 'updated_at'> = {
   display_order: 0,
 };
 
-const CATEGORIES = ['AI', 'Automation', 'Web', 'Backend', 'Mobile', 'Custom Software'];
+const CATEGORIES = ['AI', 'Automation', 'Web', 'Backend', 'Cloud', 'Custom Software'];
 
 function slugify(s: string) {
   return s.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');

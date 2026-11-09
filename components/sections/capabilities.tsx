@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Code2, Cpu, Smartphone, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Code2, Cpu, Cloud, CheckCircle2 } from 'lucide-react';
 import { FadeUp, Stagger, StaggerItem } from '@/components/motion/motion';
 import type { Service } from '@/lib/types';
 import { useState, useEffect } from 'react';
@@ -41,17 +41,17 @@ const DEFAULT_CAPABILITIES = [
     ],
   },
   {
-    id: 'cloud-mobile',
-    title: 'Mobile & Cloud Architecture',
-    tagline: 'Cross-platform mobile apps and resilient cloud infrastructure.',
-    icon: Smartphone,
+    id: 'cloud-deploy',
+    title: 'Cloud & Deployment',
+    tagline: 'Reliable deployment pipelines and resilient cloud infrastructure.',
+    icon: Cloud,
     accent: 'from-cyan-500/20 to-cyan-500/0',
     borderHover: 'hover:border-cyan-500/40',
-    tags: ['React Native', 'Flutter', 'Docker', 'AWS / Vercel', 'Supabase', 'CI/CD Pipelines'],
+    tags: ['Docker', 'AWS / Vercel', 'Supabase', 'CI/CD Pipelines'],
     features: [
-      'Native-feel iOS and Android applications with unified codebases',
       'Automated deployment pipelines, containerization, and monitoring',
       'Reliable serverless architectures with near-zero cold-starts',
+      'Infrastructure-as-code and environment management at scale',
     ],
   },
 ];

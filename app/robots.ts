@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin'],
     },
-    sitemap: 'https://muhammadhassan.dev/sitemap.xml',
+    sitemap: 'https://portfolioh-rho.vercel.app/sitemap.xml',
   };
 }

@@ -8,7 +8,7 @@ const CAPABILITIES = [
   'Web Development',
   'APIs',
   'Backend',
-  'Mobile Apps',
+  'Cloud & Deployment',
   'Custom Software',
 ];
 

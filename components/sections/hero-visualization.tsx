@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { Brain, Workflow, Globe, Server, Database, Smartphone, Boxes } from 'lucide-react';
+import { Brain, Workflow, Globe, Server, Database, Cloud, Boxes } from 'lucide-react';
 
 const NODES = [
   { icon: Brain, label: 'AI', x: 50, y: 0, delay: 0 },
@@ -10,7 +10,7 @@ const NODES = [
   { icon: Database, label: 'Database', x: 50, y: 55, delay: 0.4 },
   { icon: Boxes, label: 'Workflow', x: 82, y: 55, delay: 0.5 },
   { icon: Globe, label: 'Web App', x: 32, y: 88, delay: 0.65 },
-  { icon: Smartphone, label: 'Mobile', x: 68, y: 88, delay: 0.75 },
+  { icon: Cloud, label: 'Cloud', x: 68, y: 88, delay: 0.75 },
 ];
 
 export function HeroVisualization({ reduce }: { reduce: boolean | null }) {
@@ -50,10 +50,10 @@ export function HeroVisualization({ reduce }: { reduce: boolean | null }) {
         {/* API -> Web App */}
         <motion.line x1="22" y1="60" x2="34" y2="83" stroke="url(#line-grad)" strokeWidth="0.4"
           initial={reduce ? { opacity: 0 } : { pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.75 }} />
-        {/* Workflow -> Mobile */}
+        {/* Workflow -> Cloud */}
         <motion.line x1="78" y1="60" x2="66" y2="83" stroke="url(#line-grad)" strokeWidth="0.4"
           initial={reduce ? { opacity: 0 } : { pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.85 }} />
-        {/* Database -> Web App & Mobile */}
+        {/* Database -> Web App & Cloud */}
         <motion.line x1="50" y1="60" x2="36" y2="83" stroke="url(#line-grad)" strokeWidth="0.3" strokeDasharray="1 1"
           initial={reduce ? { opacity: 0 } : { pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.5 }} transition={{ duration: 0.5, delay: 0.9 }} />
         <motion.line x1="50" y1="60" x2="64" y2="83" stroke="url(#line-grad)" strokeWidth="0.3" strokeDasharray="1 1"

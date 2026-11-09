@@ -88,17 +88,17 @@ export const DEFAULT_PROFILE: Profile = {
   id: '',
   name: 'Muhammad Hassan',
   professional_title: 'Full-Stack & AI Engineer',
-  hero_headline: 'I build scalable web, mobile and AI-powered products.',
+  hero_headline: 'I build scalable web and AI-powered products.',
   hero_description:
     'Full-stack engineer specializing in production-grade applications, intelligent automation, and end-to-end product development.',
   about:
-    "I architect and ship software across the full stack \u2014 from responsive frontends to scalable APIs to AI-driven automation. I work with Next.js, React, Django, FastAPI, Flutter, and modern AI tooling to deliver products that solve real problems. Currently completing my BS in Software Engineering at PAF KIET.",
+    "I architect and ship software across the full stack \u2014 from responsive frontends to scalable APIs to AI-driven automation. I work with Next.js, React, Django, FastAPI, and modern AI tooling to deliver products that solve real problems. Currently completing my BS in Software Engineering at PAF KIET.",
   profile_image_url: null,
-  email: 'hello@muhammadhassan.dev',
+  email: 'muhammadhassanmh4080@gmail.com',
   location: 'Karachi, Pakistan',
   availability_text: 'Open to new projects and engineering partnerships.',
-  github_url: 'https://github.com/muhammadhassan',
-  linkedin_url: 'https://linkedin.com/in/muhammadhassan',
+  github_url: 'https://github.com/muhammad-hassn',
+  linkedin_url: 'https://www.linkedin.com/in/muhammad-hassan-31a43a319/',
   website_url: null,
   created_at: '',
   updated_at: '',
@@ -109,9 +109,9 @@ export const PROJECT_TYPES = [
   'AI Application',
   'Automation',
   'API / Backend',
-  'Mobile App',
+  'Cloud Architecture',
   'Custom Software',
   'Other',
 ] as const;
 
-export const SKILL_CATEGORIES = ['AI', 'Web', 'Backend', 'Automation', 'Mobile', 'Database'] as const;
+export const SKILL_CATEGORIES = ['AI', 'Web', 'Backend', 'Automation', 'Cloud', 'Database'] as const;

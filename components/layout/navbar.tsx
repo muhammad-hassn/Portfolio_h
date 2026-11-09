@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
+  { label: 'About', href: '/#about' },
   { label: 'Work', href: '/#work' },
   { label: 'Capabilities', href: '/#capabilities' },
   { label: 'Stack', href: '/#tech' },

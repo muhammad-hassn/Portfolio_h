@@ -18,7 +18,6 @@ const CURATED_STACK = [
   { name: 'Docker', category: 'devops' },
   { name: 'Supabase', category: 'backend' },
   { name: 'Redis', category: 'database' },
-  { name: 'React Native', category: 'mobile' },
   { name: 'GraphQL / REST', category: 'api' },
   { name: 'Three.js / WebGL', category: 'graphics' },
   { name: 'Git & GitHub CI', category: 'devops' },

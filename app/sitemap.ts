@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getProjects } from '@/lib/data';
 
-const SITE_URL = 'https://muhammadhassan.dev';
+const SITE_URL = 'https://portfolioh-rho.vercel.app';
 
 export const revalidate = 3600;
 

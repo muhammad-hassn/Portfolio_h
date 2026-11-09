@@ -10,7 +10,7 @@ import type { ContactMessage } from '@/lib/types';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 
-const FILTERS = ['All', 'Unread', 'Website', 'AI', 'Automation', 'API', 'Mobile', 'Custom Software'];
+const FILTERS = ['All', 'Unread', 'Website', 'AI', 'Automation', 'API', 'Cloud', 'Custom Software'];
 
 export default function MessagesAdmin() {
   const [messages, setMessages] = useState<ContactMessage[]>([]);
